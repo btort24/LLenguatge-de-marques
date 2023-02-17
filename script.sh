@@ -95,7 +95,7 @@ if [ $(dpkg-query -W -f='${Status}' php-mysql 2>/dev/null | grep -c "ok installe
 	echo -e "[*]  El paquet PHP-MYSQL no està instal.lat:   Incorrecte!! 0 punts" >> /var/log/examen.txt
 	else
 	punts=$((punts + 5));
-	echo -e "[*]  Si la xarxa NAT és correcte i,                         ${GREEN}OK ${NONE}
+	echo -e "[*]  Si la xarxa NAT és correcte i,                         ${GREEN} ${IP} és igual a: 172.31.0.250 ${NONE}
 	echo -e "[*]  El paquet PHP-MYSQL està instal.lat                    ${GREEN}Correcte! $punts${NONE}"
 	echo -e "[*]  El paquet PHP-MYSQL està instal.lat: Correcte! $punts" >> /var/log/examen.txt
 fi
@@ -143,7 +143,7 @@ if [ ! -d "$HOST_DIR" ];
 	echo -e "El directori té algun fitxer -- index.html i és?" >> /var/log/examen.txt
 		if [ ! -f "$HOST_FILE" ]
 #		punts=$((punts + 1));
-		then echo -e "[*]  Fitxer index.html borrat.                              ${GREEN}Correcte! $punts${NONE}"
+		then echo -e "[*]  Fitxer index.html borrat.                              ${GREEN}Correcte! ${NONE}"
 		echo -e "[*]  Fitxer index.html borrat:  Correcte! $punts" >> /var/log/examen.txt
 		else echo -e "[*]  No has esborrat el fitxer index.html!!                 ${RED}Incorrecte!! 0 punts${NONE}"
 		echo -e "[*]  No has esborrat el fitxer index.html!! Incorrecte!! 0 punts" >> /var/log/examen.txt
@@ -168,19 +168,19 @@ fi
 
 
 #Comprovem si s'ha creat el directori moodledata
-#HOST_DIR_MDATA="/var/www/moodledata"
+HOST_DIR_MDATA="/var/www/moodledata"
 
-#if [ ! -d "$HOST_DIR_MDATA" ]
-#	then echo -e "[*]  El directori moodledata no existeix.                   ${RED}Incorrecte!! 0 punts${NONE}"
-#	echo -e "[*]  El directori moodledata no existeix:  Incorrecte!! 0 punts" >> /var/log/examen.txt
-#	else echo -e "[*]  El directori moodledata existeix.                      ${GREEN}Nota EXAMEN: $punts${NONE}"
-#	echo -e "[*]  El directori moodledata existeix:     Nota EXAMEN: $punts" >> /var/log/examen.txt
-#fi
+if [ ! -d "$HOST_DIR_MDATA" ]
+	then echo -e "[*]  El directori moodledata no existeix.                   ${RED}Incorrecte!! 0 punts${NONE}"
+	echo -e "[*]  El directori moodledata no existeix:  Incorrecte!! 0 punts" >> /var/log/examen.txt
+	else echo -e "[*]  El directori moodledata existeix.                      ${GREEN}Correcte! ${NONE}"
+	echo -e "[*]  El directori moodledata existeix:     Correcte!" >> /var/log/examen.txt
+fi
 
 #Comprovem propietaris
 if [ -d "$HOST_DIR" ] && [ $(stat -c "%U" $HOST_DIR) == "www-data" ]; then
 #	punts=$((punts + 1));
-	echo -e "[*]  El directori host té usuari correcte.                  ${GREEN}Correcte! $punts${NONE}"
+	echo -e "[*]  El directori host té usuari correcte.                  ${GREEN}Correcte! ${NONE}"
 	echo -e "[*]  El directori host té usuari correcte:  Correcte! $punts"  >> /var/log/examen.txt
 else
 	echo -e "[*]  El directori host té usuari incorrecte.                ${RED}Incorrecte!! 0 punts${NONE}"
