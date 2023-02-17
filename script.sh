@@ -58,23 +58,23 @@ echo "+---------------------------------------------+" >> /var/log/examen.txt
 #Comprovem apache2
 if [ $(dpkg-query -W -f='${Status}' apache2 2>/dev/null | grep -c "ok installed") -eq 0 ] >>/var/log/examen.txt;
 	then
-	echo -e "[*]  Apache2 no està instal.lat                             ${RED}Incorrecte!! 0 punts${NONE}"
+	echo -e "[*]  Apache2 no està instal.lat                             ${RED}Incorrecte!!${NONE}"
 	echo -e "[*]  Apache2 no està instal.lat:  Correcte!! 0 punts${NONE}" >> /var/log/examen.txt
 	else
 #	punts=$((punts + 1));
-	echo -e "[*]  Apache2 està instal.lat                                ${GREEN}Correcte! $punts${NONE}" 
-	echo -e "[*]  Apache2 està instal.lat:   Correcte! $punts" >> /var/log/examen.txt
+	echo -e "[*]  Apache2 està instal.lat                                ${GREEN}Correcte!!${NONE}" 
+	echo -e "[*]  Apache2 està instal.lat:   Correcte!" >> /var/log/examen.txt
 fi
 
 #Comprovem Mariadb-Server
 if [ $(dpkg-query -W -f='${Status}' mariadb-server 2>/dev/null | grep -c "ok installed") -eq 0 ];
 	then
-	echo -e "[*]  Mariadb-Server no està instal.lat                      ${RED}Incorrecte!! 0 punts${NONE}"
+	echo -e "[*]  Mariadb-Server no està instal.lat                      ${RED}Incorrecte!!${NONE}"
 	echo -e "[*]  Mariadb-Server no està instal.lat   Incorrecte!! 0 punts" >> /var/log/examen.txt
 	else
 #	punts=$((punts + 1));
-	echo -e "[*]  Mariadb-Server està instal.lat                         ${GREEN}Correcte! $punts${NONE}"
-	echo -e "[*]  Mariadb-Server està instal.lat:    Correcte! $punts" >> /var/log/examen.txt
+	echo -e "[*]  Mariadb-Server està instal.lat                         ${GREEN}Correcte!!${NONE}"
+	echo -e "[*]  Mariadb-Server està instal.lat:    Correcte!" >> /var/log/examen.txt
 fi
 
 #Comprovem php
@@ -84,8 +84,8 @@ if [ $(dpkg-query -W -f='${Status}' php 2>/dev/null | grep -c "ok installed") -e
 	echo -e "[*]  PHP no està instal.lat: Incorrecte!! 0 punts" >> /var/log/examen.txt
 	else
 #	punts=$((punts + 3));
-	echo -e "[*]  PHP està instal.lat                                    ${GREEN}Correcte! $punts${NONE}"
-	echo -e "[*]  PHP està instal.lat: Correcte! $punts" >> /var/log/examen.txt
+	echo -e "[*]  PHP està instal.lat                                    ${GREEN}Correcte!${NONE}"
+	echo -e "[*]  PHP està instal.lat: Correcte!" >> /var/log/examen.txt
 fi
 
 #Comprovem php-mysql
@@ -94,7 +94,8 @@ if [ $(dpkg-query -W -f='${Status}' php-mysql 2>/dev/null | grep -c "ok installe
 	echo -e "[*]  El paquet PHP-MYSQL no està instal.lat                 ${RED}Incorrecte!! 0 punts${NONE}"
 	echo -e "[*]  El paquet PHP-MYSQL no està instal.lat:   Incorrecte!! 0 punts" >> /var/log/examen.txt
 	else
-	punts=$((punts + 3));
+	punts=$((punts + 5));
+	echo -e "[*]  Si la xarxa NAT és correcte i,                         ${GREEN}OK ${NONE}
 	echo -e "[*]  El paquet PHP-MYSQL està instal.lat                    ${GREEN}Correcte! $punts${NONE}"
 	echo -e "[*]  El paquet PHP-MYSQL està instal.lat: Correcte! $punts" >> /var/log/examen.txt
 fi
