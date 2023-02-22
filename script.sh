@@ -57,13 +57,13 @@ echo "+---------------------------------------------+"
 echo "+---------------------------------------------+" >> /var/log/examen.txt
 
 #Comprovem host
-if [ "$IP" != "172.31.0.250/24" ]; then
-	echo -e "[*]  ${RED}Ip Host Incorrecte!! -- ${IP} enlloc de 172.31.0.250/24${NONE}"
-	echo -e "[*]  Ip host Incorrecte!! ${IP} ---  172.31.0.250/24" >> /var/log/examen.txt
+if [ "$IP" != "172.30.10.40/24" ]; then
+	echo -e "[*]  ${RED}Ip Host Incorrecte!! -- ${IP} enlloc de 172.30.10.40/24${NONE}"
+	echo -e "[*]  Ip host Incorrecte!! ${IP} ---  172.30.10.40/24" >> /var/log/examen.txt
 else
 	punts=$((punts + 4));
-	echo -e "[*]  ${GREEN}La ip host és correcte${IP} ---  172.31.0.250/24 ${NONE}"
-	echo -e "[*]  La ip host és correcte${IP} ---  172.31.0.250/24" >> /var/log/examen.txt
+	echo -e "[*]  ${GREEN}La ip host és correcte${IP} ---  172.30.10.40/24 ${NONE}"
+	echo -e "[*]  La ip host és correcte${IP} ---  172.30.10.40/24" >> /var/log/examen.txt
 fi
 
 #Comprovem apache2
@@ -112,7 +112,7 @@ if [ $(dpkg-query -W -f='${Status}' php-mysql 2>/dev/null | grep -c "ok installe
 fi
 
 #Comprovem base de dades
-DBNAME="moodle"
+DBNAME="wordpress"
 if [ -d "/var/lib/mysql/$DBNAME" ]; then
 	punts=$((punts + 1));
 	echo -e "[*]  La base de dades $DBNAME existeix:                      ${GREEN}Correcte!! $punts"
@@ -182,16 +182,16 @@ if [  "$(ls $HOST_DIR)" ];
 fi
 
 #Comprovem si s'ha creat el directori moodledata
-HOST_DIR_MDATA="/var/www/moodledata"
+#HOST_DIR_MDATA="/var/www/moodledata"
 
-if [ ! -d "$HOST_DIR_MDATA" ]
-	then
-	punts=$((punts -1));
-	echo -e "[*]  El directori moodledata no existeix.                   ${RED}Incorrecte!! $punts${NONE}"
-	echo -e "[*]  El directori moodledata no existeix:                   Incorrecte!! $punts" >> /var/log/examen.txt
-	else echo -e "[*]  El directori moodledata existeix.                      ${GREEN}Correcte!! ${NONE}"
-	echo -e "[*]  El directori moodledata existeix:                           Correcte!!" >> /var/log/examen.txt
-fi
+#if [ ! -d "$HOST_DIR_MDATA" ]
+#	then
+#	punts=$((punts -1));
+#	echo -e "[*]  El directori moodledata no existeix.                   ${RED}Incorrecte!! $punts${NONE}"
+#	echo -e "[*]  El directori moodledata no existeix:                   Incorrecte!! $punts" >> /var/log/examen.txt
+#	else echo -e "[*]  El directori moodledata existeix.                      ${GREEN}Correcte!! ${NONE}"
+#	echo -e "[*]  El directori moodledata existeix:                           Correcte!!" >> /var/log/examen.txt
+#fi
 
 #Comprovem propietaris
 if [  "$(ls $HOST_DIR)" ];
@@ -230,6 +230,6 @@ apt-get install -y sendemail >/dev/null
 apt-get install -y libnet-ssleay-perl >/dev/null
 apt-get install -y libio-socket-ssl-perl >/dev/null
 
-sendemail -f $var1 -t p2022inf3@jaumebalmes.net -u "1DAW" -m "Examen UF2" -a /var/log/examen.txt -s smtp.gmail.com:587 -o tls=yes -v -xu $var1 -xp $var2 >/dev/null
+sendemail -f $var1 -t p2022inf3@jaumebalmes.net -u "1ASIX" -m "Examen UF2" -a /var/log/examen.txt -s smtp.gmail.com:587 -o tls=yes -v -xu $var1 -xp $var2 >/dev/null
 echo
 
